@@ -4,6 +4,21 @@ import "./index.css";
 function App() {
   const [prompt, set_prompt] = useState("");
   const [messages, set_messages] = useState([]);
+  const [dark_mode, set_dark_mode] = useState(false);
+  const messages_end = useRef(null);
+
+  const sample_questions = [
+    "Who are you?",
+    "What are your skills?",
+    "Tell me about your projects",
+    "Where do you work?",
+    "What are your hobbies?",
+  ];
+
+  //auto-scroll
+  useEffect(() => {
+    messages_end.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
 
   const send_prompt = async (question_text = null) => {
     const text_to_send = question_text || prompt;
@@ -32,11 +47,65 @@ function App() {
     set_prompt("");
   };
 
+  const handle_enter_key = (e) => {
+    if (e.key === "Enter") send_prompt();
+  };
+
+  const toggle_dark_mode = () => {
+    set_dark_mode((prev) => !prev);
+  };
+
+  const handle_sample_question = (question) => {
+    send_prompt(question);
+  };
+
+  const clear_chat = () => {
+    set_messages([]);
+  };
+
   return (
+    <div className={dark_mode ? "dark" : ""}>
       <div className="chat_container">
         <div className="chat">
           <div className="header">
             <h1 className="title">Resume Chatbot</h1>
+            <div className="header_buttons">
+              <button onClick={clear_chat} className="clear_button">
+                Clear
+              </button>
+              <button onClick={toggle_dark_mode} className="dark_mode_button">
+                {dark_mode ? "Light Mode" : "Dark Mode"}
+              </button>
+            </div>
+          </div>
+
+          <div className="sample_questions">
+            <h3 className="sample_title">Ask:</h3>
+            <div className="questions_grid">
+              {sample_questions.map((question, index) => (
+                <button
+                  key={index}
+                  onClick={() => handle_sample_question(question)}
+                  className="sample_question"
+                >
+                  {question}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="messages">
+            <div className="welcome_message">
+              <span className="welcome_text">
+                Hi! I'm Teo's AI chatbot. Ask me about his background, skills, or experience.
+              </span>
+            </div>
+            {messages.map((msg, index) => (
+              <div key={index} className={`wrapper ${msg.sender}`}>
+                <span className={`bubble ${msg.sender}`}>{msg.text}</span>
+              </div>
+            ))}
+            <div ref={messages_end} />
           </div>
 
           <div className="input">
@@ -54,6 +123,7 @@ function App() {
           </div>
         </div>
       </div>
+    </div>
   );
 }
 export default App;
