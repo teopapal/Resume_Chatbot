@@ -1,4 +1,4 @@
-const response = [
+const responses = [
   {
     keywords: ["about yourself", "who are you"],
     response: "Hi, I'm Teo, a computer science undergraduate student passionate about web development and AI.",
@@ -13,7 +13,7 @@ const response = [
   },
   {
     keywords: ["projects", "worked on"],
-    response: "I've developed a web-based and a Java-based database system, a compiler for the Alpha language, board games using Java, and a malware analysis system that monitors application behavior and network traffic.",
+    response: "I've developed a web-based and a Java-based database system, a compiler for the Alpha language, board games using Java, and a malware analysis system that monitors application behavior and network traffic. You can find more details about my projects on my GitHub: https://github.com/teopapal.",
   },
   {
     keywords: ["hobbies", "interests"],
@@ -23,6 +23,18 @@ const response = [
     keywords: ["work", "experience", "job"],
     response: "I'm currently working at ORamaVR (FORTH) as a Quality Assurance (UI/UX) Tester since 2023.",
   },
+  {
+    keywords: ["teamwork", "collaboration", "team"],
+    response: "I enjoy collaborative work and have experience working in teams, whether in academic or personal projects or during CTF competitions.",
+  },
+  {
+    keywords: ["contact", "reach", "email"],
+    response: "You can reach me via my personal email: teopapaliagas@gmail.com.",
+  },
+  {
+    keywords: ["languages", "language", "speak"],
+    response: "I'm fluent in both Greek and English, with Greek being my native language.",
+  }
 ];
 
-module.exports = response;
+module.exports = responses;
