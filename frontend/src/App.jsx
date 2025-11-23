@@ -28,7 +28,7 @@ function App() {
     set_messages((messages) => [...messages, user_message]);
 
     try {
-      const res = await fetch("http://localhost:8080/chat", {
+      const res = await fetch("https://resume-chatbot-csjf.onrender.com/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ prompt: text_to_send }),
