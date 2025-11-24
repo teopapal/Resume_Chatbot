@@ -3,7 +3,7 @@ const cors = require("cors");
 const responses = require("./responses");
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 25577;
 
 app.use(cors());
 app.use(express.json());
@@ -25,3 +25,5 @@ app.post("/chat", (req, res) => {
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
+
+console.log("Ready!");
